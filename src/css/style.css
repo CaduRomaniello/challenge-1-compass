@@ -37,7 +37,7 @@ article{
     width: 100%;
 }
 
-.flex-item{
+.first-flex-item{
     background-color: green;
     margin-left: 5%;
     margin-right: 5%;
@@ -45,4 +45,28 @@ article{
     text-align: center;
     width: 90%;
     margin: 10px;
+
+    padding: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.profile-picture{
+    width: 20px;
+    margin-right: 5px;
+}
+
+.poster-header{
+    display: flex;
+    text-align: center;
+    align-items: center;
+}
+
+.poster-image{
+    margin: auto;
+    width: 96%;
+    border-radius: 5px;
 }
