@@ -1,0 +1,18 @@
+{
+  "name": "challenge-1",
+  "version": "1.0.0",
+  "description": "First challenge SP - Hybrid Mobile Journey (React Native) - AWS Cloud Context  - Compass UOL  06/03/2023",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "tsc -w",
+    "server": "lite-server"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "lite-server": "^2.6.1",
+    "tsc-esm": "^1.0.4",
+    "typescript": "^5.0.2"
+  }
+}
