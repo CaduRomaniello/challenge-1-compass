@@ -1,3 +1,9 @@
+/*
+255, 128, 0
+255, 206, 0
+255, 0, 36
+*/
+
 html{
     margin: 0px;
     padding: 0px;
@@ -5,21 +11,21 @@ html{
 body{
     margin: 0px;
     padding: 0px;
-    background-color: red;
+    background-color: rgb(255, 206, 0);
 }
 
 header{
     text-align: center;
-    background-color: gray;
+    background-color: rgb(255, 0, 36);
     margin: 0px;
-    border: 1px solid gray;
+    border: 1px solid rgb(255, 0, 36);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
 
 article{
     margin-top: 2%;
-    background-color: yellow;
+    background-color: rgb(255, 128, 0);
     margin-left: 5%;
     margin-right: 5%;
     border-radius: 10px;
@@ -38,13 +44,14 @@ article{
 }
 
 .first-flex-item{
-    background-color: green;
+    background-color: rgb(255, 0, 36);
     margin-left: 5%;
     margin-right: 5%;
     border-radius: 10px;
     text-align: center;
     width: 90%;
     margin: 10px;
+    border: none;
 
     padding: 10px;
 
@@ -52,6 +59,10 @@ article{
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+}
+
+.first-flex-item:hover{
+    background-color: rgb(255, 206, 0);
 }
 
 .profile-picture{
@@ -68,6 +79,7 @@ article{
 .post-image{
     margin: auto;
     border-radius: 5px;
+    width: 100%;
 }
 
 .post-image-container{

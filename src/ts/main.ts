@@ -57,14 +57,6 @@ class Posts{
         }
     }
 
-    // postCard(postObj: BlogPost){
-    //     return `
-    //             <h3 class="post-title">${postObj.title}</h3>
-    //             <p class="post-body">${postObj.body}</p>
-    //             <img src="${postObj.imageUrl}" alt="imagem do post ${postObj.id}" class="post-image">
-    //         `;
-    // }
-
     postCard(postObj: BlogPost){
         return `
                 <h3 class="post-title">${postObj.title}</h3>
@@ -80,7 +72,7 @@ class Posts{
         const hostElement = document.getElementById("flex-container")! as HTMLElement;
         let count = 0
         for (let postData of this.posts){
-            const newPost = document.createElement("section")
+            const newPost = document.createElement("button")
             newPost.classList.add(postData.newElementClass)
             newPost.innerHTML = this.postCard(postData)
             hostElement.appendChild(newPost)

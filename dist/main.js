@@ -65,7 +65,7 @@ class Posts {
         const hostElement = document.getElementById("flex-container");
         let count = 0;
         for (let postData of this.posts) {
-            const newPost = document.createElement("section");
+            const newPost = document.createElement("button");
             newPost.classList.add(postData.newElementClass);
             newPost.innerHTML = this.postCard(postData);
             hostElement.appendChild(newPost);
