@@ -58,6 +58,7 @@
 //     }
 // ]
 
+// this is a class that will help us to store the information about each post in the home
 class BlogPost{
     id: number;
     title: string;
@@ -74,6 +75,7 @@ class BlogPost{
     }
 }
 
+// this is a singleton class that will do all the work to load and render the posts in the main screen
 class Posts{
     public posts: BlogPost[] = [];
     private static instance: Posts;
@@ -88,12 +90,14 @@ class Posts{
         return this.instance;
     }
 
+    // this function reads all the posts in the data.ts file and store them in this class posts attribute
     readPosts(){
         for (let postData of postsData){
             this.posts.push(new BlogPost(postData.id, postData.title, postData.body, postData.imageUrl, "first-flex-item"))
         }
     }
 
+    // this function were inspired in the example provided by the instructors where he creates an HTMLElement with a function that returns a string that will be the ineerHMTL property of the hostElement
     postCard(postObj: BlogPost){
         return `
                 <h2 class="post-title">${postObj.title}</h2>
@@ -102,7 +106,7 @@ class Posts{
             `;
     }
         
-
+    // this functions creates a HTMLElement for every post in the data.ts file and adds it to the hostElement
     renderPosts(){
         const hostElement = document.getElementById("flex-container")! as HTMLElement;
         for (let postData of this.posts){
@@ -115,6 +119,7 @@ class Posts{
     }
 }
 
+// this is a class that will help us to store the information about each comment of each post in the post details page
 class BlogComment{
     public id: number;
     public postId: number;
@@ -129,18 +134,14 @@ class BlogComment{
     }
 }
 
+// thi is a class that will e encharged of render the elements in the post details page
 class PostComments{
     public post: BlogPost;
     public comments: BlogComment[] = [];
-    // private static instance: PostComments;
 
     constructor(postId:number) {
         let post = postsData.find(post => post.id == postId);
-        // console.log(post);
-
         let comments = postsComents.filter(comment => comment.postId == postId);
-        // console.log(comments)
-
 
         if (post){
             this.post = new BlogPost(post.id, post.title, post.body, post.imageUrl, "first-flex-item");
@@ -158,6 +159,7 @@ class PostComments{
     }
         
 
+    // this functions renders the part of the page that will contains the data about the specific post
     renderPosts(){
         const hostElement = document.querySelector(".first-flex-item")! as HTMLElement;
         // console.log(hostElement);
@@ -167,6 +169,7 @@ class PostComments{
         hostElement.querySelector("img")!.alt = ` imagem do post ${this.post.id}`;
     }
 
+    // this function has the same meaning of the Posts.postCard method
     createComment(postObj: BlogComment){
         return `
                 <h3 class="post-title">${postObj.email}</h3>
@@ -174,6 +177,7 @@ class PostComments{
             `;
     }
 
+    // this functions will renders all the comments in the post details page
     renderComments(){
         const hostElement = document.getElementById("flex-container-comments")! as HTMLElement;
         for (let comment of this.comments){
@@ -185,6 +189,7 @@ class PostComments{
     }
 }
 
+// function that will be encharged of load and render the home page
 function home(){
     const posts = Posts.getInstance();
     
@@ -193,6 +198,7 @@ function home(){
     posts.renderPosts();
 }
 
+// function that will be encharged of load and render the post details page
 function post(){
     let params = (new URL(document.location.href)).searchParams;
     let id_param = params.get("id");

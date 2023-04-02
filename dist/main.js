@@ -57,6 +57,7 @@
 //         email: 'user6@hotmail.com',
 //     }
 // ]
+// this is a class that will help us to store the information about each post in the home
 class BlogPost {
     constructor(id, title, body, imageUrl, newElementClass) {
         this.id = id;
@@ -66,6 +67,7 @@ class BlogPost {
         this.newElementClass = newElementClass;
     }
 }
+// this is a singleton class that will do all the work to load and render the posts in the main screen
 class Posts {
     constructor() {
         this.posts = [];
@@ -77,11 +79,13 @@ class Posts {
         this.instance = new Posts();
         return this.instance;
     }
+    // this function reads all the posts in the data.ts file and store them in this class posts attribute
     readPosts() {
         for (let postData of postsData) {
             this.posts.push(new BlogPost(postData.id, postData.title, postData.body, postData.imageUrl, "first-flex-item"));
         }
     }
+    // this function were inspired in the example provided by the instructors where he creates an HTMLElement with a function that returns a string that will be the ineerHMTL property of the hostElement
     postCard(postObj) {
         return `
                 <h2 class="post-title">${postObj.title}</h2>
@@ -89,6 +93,7 @@ class Posts {
                 <img src="${postObj.imageUrl}" alt="imagem do post ${postObj.id}" class="post-image">
             `;
     }
+    // this functions creates a HTMLElement for every post in the data.ts file and adds it to the hostElement
     renderPosts() {
         const hostElement = document.getElementById("flex-container");
         for (let postData of this.posts) {
@@ -100,6 +105,7 @@ class Posts {
         }
     }
 }
+// this is a class that will help us to store the information about each comment of each post in the post details page
 class BlogComment {
     constructor(id, postId, body, email) {
         this.id = id;
@@ -108,14 +114,12 @@ class BlogComment {
         this.email = email;
     }
 }
+// thi is a class that will e encharged of render the elements in the post details page
 class PostComments {
-    // private static instance: PostComments;
     constructor(postId) {
         this.comments = [];
         let post = postsData.find(post => post.id == postId);
-        // console.log(post);
         let comments = postsComents.filter(comment => comment.postId == postId);
-        // console.log(comments)
         if (post) {
             this.post = new BlogPost(post.id, post.title, post.body, post.imageUrl, "first-flex-item");
         }
@@ -128,6 +132,7 @@ class PostComments {
             }
         }
     }
+    // this functions renders the part of the page that will contains the data about the specific post
     renderPosts() {
         const hostElement = document.querySelector(".first-flex-item");
         // console.log(hostElement);
@@ -136,12 +141,14 @@ class PostComments {
         hostElement.querySelector("img").src = this.post.imageUrl;
         hostElement.querySelector("img").alt = ` imagem do post ${this.post.id}`;
     }
+    // this function has the same meaning of the Posts.postCard method
     createComment(postObj) {
         return `
                 <h3 class="post-title">${postObj.email}</h3>
                 <p class="post-body">${postObj.body}</p>
             `;
     }
+    // this functions will renders all the comments in the post details page
     renderComments() {
         const hostElement = document.getElementById("flex-container-comments");
         for (let comment of this.comments) {
@@ -152,11 +159,13 @@ class PostComments {
         }
     }
 }
+// function that will be encharged of load and render the home page
 function home() {
     const posts = Posts.getInstance();
     posts.readPosts();
     posts.renderPosts();
 }
+// function that will be encharged of load and render the post details page
 function post() {
     let params = (new URL(document.location.href)).searchParams;
     let id_param = params.get("id");
